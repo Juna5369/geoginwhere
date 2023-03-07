@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.project.trip.mapper.CustomerCenterMapper">
+  	<resultMap type="noticevo" id="noticeMap">
+  		<id column="not_no" property="not_no"/>
+  		<result column="not_title" property="not_title"/>
+  		<result column="not_date" property="not_date"/>
+  		<result column="not_contents" property="not_contents"/>
+  	</resultMap>
+  	
+  	<insert id="insertNotice">
+  		INSERT INTO notice_tbl (not_title, not_contents, not_date) VALUES (#{not_title}, #{not_contents}, NOW())
+  	</insert>
+  	
+  	<select id="getNoticeList" resultType="noticevo">
+  		SELECT * FROM notice_tbl ORDER BY not_no DESC
+  	</select>
+  	
+  	<select id="getNoticeOne" resultType="noticevo">
+  		SELECT * FROM notice_tbl WHERE not_no = #{not_no}
+  	</select>
+  	
+  	<select id="getNoticeListByTitle" resultType="noticevo">
+		SELECT * FROM notice_tbl WHERE not_title LIKE CONCAT ('%', #{not_title}, '%') ORDER BY not_no DESC
+	</select>
+	
+	<update id="updateNotice">
+		UPDATE notice_tbl SET not_title = #{not_title}, not_contents = #{not_contents} WHERE not_no = #{not_no}
+	</update>
+	
+	<delete id="deleteNotice">
+		DELETE FROM notice_tbl WHERE not_no = #{not_no}
+	</delete>
+  
+	<insert id="insertResQNA">
+		INSERT INTO res_qna_tbl (id, res_no, res_qna_title, res_qna_contents, res_qna_date) VALUES (#{id}, #{res_no}, #{res_qna_title}, #{res_qna_contents}, NOW())
+	</insert>
+	
+	<select id="getResQNAList" resultType="resqnavo">
+		SELECT * FROM res_qna_tbl WHERE id = #{id} ORDER BY res_qna_no DESC
+	</select>
+	
+	<select id="getResQNAListForAdmin" resultType="resqnavo">
+		SELECT * FROM res_qna_tbl ORDER BY res_qna_ean, res_qna_no
+	</select>
+
+	<select id="getResQNAOne" resultType="resqnavo">
+		SELECT * FROM res_qna_tbl WHERE res_qna_no = #{res_qna_no}
+	</select>
+	
+	<update id="updateResQNA">
+		UPDATE res_qna_tbl SET res_qna_title = #{res_qna_title}, res_qna_contents = #{res_qna_contents} WHERE res_qna_no = #{res_qna_no}
+	</update>
+	
+	<update id="updateResQNAEan">
+		UPDATE res_qna_tbl SET res_qna_ean = #{res_qna_ean} WHERE res_qna_no = #{res_qna_no}
+	</update>
+	
+	<delete id="deleteResQNA">
+		DELETE FROM res_qna_tbl WHERE res_qna_no = #{res_qna_no}
+	</delete>
+	
+	<insert id="insertResReply">
+		INSERT INTO res_reply_tbl (res_qna_no, res_reply_title, res_reply_contents, res_reply_date) VALUES (#{res_qna_no}, #{res_reply_title}, #{res_reply_contents}, NOW())
+	</insert>
+	
+	<select id="getResReplyOne" resultType="resreplyvo">
+		SELECT * FROM res_reply_tbl WHERE res_qna_no = #{res_qna_no}
+	</select>
+	
+	<update id="updateResReply">
+		UPDATE res_reply_tbl SET res_reply_title = #{res_reply_title}, res_reply_contents = #{res_reply_contents} WHERE res_reply_no = #{res_reply_no}
+	</update>
+	
+	<delete id="deleteResReply">
+		DELETE FROM res_reply_tbl WHERE res_reply_no = #{res_reply_no}
+	</delete>
+	
+	<insert id="insertFAQ">
+		INSERT INTO faq_tbl (faq_title, faq_contents) VALUES (#{faq_title}, #{faq_contents})
+	</insert>
+	
+  	<select id="getFAQList" resultType="faqvo">
+		SELECT * FROM faq_tbl ORDER BY faq_no DESC
+	</select>
+	
+	<select id="getFAQListByTitle" resultType="faqvo">
+		SELECT * FROM faq_tbl WHERE faq_title LIKE CONCAT ('%', #{faq_title}, '%') ORDER BY faq_no DESC
+	</select>
+	
+	<update id="updateFAQ">
+		UPDATE faq_tbl SET faq_title = #{faq_title}, faq_contents = #{faq_contents} WHERE faq_no = #{faq_no}
+	</update>
+	
+	<delete id="deleteFAQ">
+		DELETE FROM faq_tbl WHERE faq_no = #{faq_no}
+	</delete>
+	
+  </mapper>

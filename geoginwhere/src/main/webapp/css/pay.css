@@ -1,0 +1,69 @@
+
+.main {
+    background-color: #FAFAFA;
+}
+
+.mini_box {
+    background-color: white;
+    width: 740px;
+    height: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.pay_title {
+    font-size: 34px;
+    text-align: left;
+    margin-bottom: 30px;
+    padding-top: 50px;
+}
+
+.cont_title {
+    text-align: left;
+    margin-bottom: 20px;
+}
+.cont_inner {
+    font-size: 17px;
+    text-align: initial;
+    
+    margin-bottom: 10px;
+}
+.cont_inner_left {
+    text-align: left;
+}
+.cont_inner_right {
+    float: right;
+}
+
+#btn-kakao-pay {
+    margin-top: 50px;
+    width: 680px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #e82835;
+    color: white;
+    border: transparent;
+}
+.kakaopay_img {
+    width: 40px;
+}
+
+#price {
+	text-align: right;
+	border: transparent;
+	font-size: 17px;
+}
+
+.prd_img{
+	width: 100px;
+	
+}
+
+.prd_info {
+	margin-bottom: 50px;
+	vertical-align: top;
+	display: inline-block;
+}
